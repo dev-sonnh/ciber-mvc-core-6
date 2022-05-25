@@ -2,6 +2,7 @@
 {
     public class Order
     {
+        public string Name { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
         public int Id { get; set; }

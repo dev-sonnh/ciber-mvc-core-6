@@ -117,7 +117,7 @@ namespace Ciber.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,ProductId,Id,Amount,OrderDate")] Order order)
+        public async Task<IActionResult> Create([Bind("Name,CustomerId,ProductId,Id,Amount,OrderDate")] Order order)
         {
             try
             {
@@ -172,7 +172,7 @@ namespace Ciber.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,ProductId,Id,Amount,OrderDate")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,CustomerId,ProductId,Id,Amount,OrderDate")] Order order)
         {
             if (id != order.Id)
             {

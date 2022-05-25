@@ -112,6 +112,7 @@ namespace Ciber.Models
                 context.Order.AddRange(
                     new Order
                     {
+                        Name="Ord1",
                         CustomerId = 1,
                         ProductId = 1,
                         Amount = 2,
@@ -119,6 +120,7 @@ namespace Ciber.Models
                     },
                     new Order
                     {
+                        Name = "Ord2",
                         CustomerId = 2,
                         ProductId = 2,
                         Amount = 2,
@@ -126,6 +128,7 @@ namespace Ciber.Models
                     },
                     new Order
                     {
+                        Name = "Ord3",
                         CustomerId = 3,
                         ProductId = 3,
                         Amount = 2,
