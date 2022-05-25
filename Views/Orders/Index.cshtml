@@ -1,0 +1,72 @@
+﻿@model X.PagedList.IPagedList<Ciber.Models.Order>
+@using X.PagedList.Mvc.Core;
+<link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/css/Order.css" rel="stylesheet" type="text/css" />
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage Orders</h1>
+
+@using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+{
+    <p>
+        Enter category to search: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Product ⇅", "Index", new { sortOrder = ViewBag.ProdSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Category ⇅", "Index", new { sortOrder = ViewBag.CateSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Customer ⇅", "Index", new { sortOrder = ViewBag.CustSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Order Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                @*<td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+<p class="align-right">
+    <a asp-action="Create">Create New Order</a>
+</p>
